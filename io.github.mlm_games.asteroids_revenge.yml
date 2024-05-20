@@ -26,14 +26,24 @@ modules:
   sources:
   - type: file
     url: https://github.com/mlm-games/asteroids-revenge/releases/download/$tag/asteroids-revenge-linux.x86_64
+    dest-filename: asteroids_revenge
     only-arches:
     - x86_64
-    x-checker-data: {}
+    x-checker-data: 
+      type: json
+      url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
+      tag-query: .tag_name
+      version-query: $tag
   - type: file
     url: https://github.com/mlm-games/asteroids-revenge/releases/download/$tag/asteroids-revenge-linux-aarch64.arm64
     only-arches:
     - aarch64
-    x-checker-data: {}
+    dest-filename: asteroids_revenge
+    x-checker-data: 
+      type: json
+      url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
+      tag-query: .tag_name
+      version-query: $tag
   - type: file
     path: io.github.mlm_games.asteroids_revenge.desktop
   - type: file
