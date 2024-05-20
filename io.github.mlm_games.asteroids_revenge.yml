@@ -26,14 +26,14 @@ modules:
   sources:
   - type: file
     url: https://github.com/mlm-games/asteroids-revenge/releases/download/$tag/asteroids-revenge-linux.x86_64
-    sha256: 0b800910d58ee825291c284ff9aec422fca3b13bf35ca83361c21ff128ec5912
+    sha256: b6a7f29418e6eadc57170cf9d3374a63c8fd4bc1e545de36bf46758505f694aa
     dest-filename: asteroids_revenge
     only-arches:
     - x86_64
     x-checker-data: {}
   - type: file
     url: https://github.com/mlm-games/asteroids-revenge/releases/download/$tag/asteroids-revenge-linux-aarch64.arm64
-    sha256: b8a481a2cd21bb45d7225836ceb564b7986ddacbbe3866063d2371b8d3c61abf
+    sha256: b8364789817f7048461c396fdc12711a93342549c8c3e5de74448762f22d33a3
     dest-filename: asteroids_revenge
     only-arches:
     - aarch64
