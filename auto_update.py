@@ -93,6 +93,16 @@ def main():
 
     branch = 'update-to-{}'.format(tag)
     f = dry_run if args.dry_run else run
+
+    try:
+        f(('git', 'rev-parse', '--verify', '--quiet', branch))
+    except subprocess.CalledProcessError:
+        # Branch doesn't exist, proceed
+        pass
+    else:
+        # Branch exists, delete it
+        f(('git', 'branch', '-D', branch))
+
     f(('git', 'checkout', '-b', branch))
     f(('git', 'commit', '-am', 'Update to {}'.format(tag)))
     f(('git', 'push', '-u', args.remote, branch))
