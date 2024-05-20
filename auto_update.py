@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
+
+# Adapted from https://github.com/flathub/org.vim.Vim/blob/master/auto-update.py
+
+
 import argparse
-import collections
-import json
 import os
+import re
 import subprocess
+import textwrap
 import xml.etree.ElementTree as ET
 
+import ruamel.yaml
+
 HERE = os.path.abspath(os.path.dirname(__file__))
-ASTEROIDS_CLONE = os.path.join(HERE, 'asteroids_revenge')
+CLONE = os.path.join(HERE, 'asteroids-revenge')
 MANIFEST = os.path.join(HERE, 'io.github.mlm_games.asteroids_revenge.yml')
 APPDATA = os.path.join(HERE, 'io.github.mlm_games.asteroids_revenge.metainfo.xml')
 
@@ -26,19 +32,26 @@ def run_and_read(args):
     return result.stdout.decode('ascii').strip()
 
 
-def update_appdata(tag, date):
-    """Update the appdata XML file with the new version and date using an XML parser."""
-    tree = ET.parse(APPDATA)
+def update_manifest(manifest, tag, sha):
+    for module in manifest['modules']:
+        if isinstance(module, dict) and module['name'] == 'asteroids-revenge':
+            source = module['sources'][0]
+            old_tag = source['tag']
+            source['tag'] = tag
+            source['commit'] = sha
+            module['sources'][0] = source
+            return old_tag
+    return None
+
+
+def update_appdata(appdata_file, tag, date):
+    tree = ET.parse(appdata_file)
     root = tree.getroot()
-
-    # Find the release element and update the version and date
-    release = root.find(".//release")
+    release = root.find('releases/release')
     if release is not None:
-        release.set("version", tag)
-        release.set("date", date)
-
-    # Write the updated XML back to the file
-    tree.write(APPDATA, encoding="utf-8", xml_declaration=True)
+        release.set('version', tag)
+        release.set('date', date)
+    tree.write(appdata_file, encoding='utf-8', xml_declaration=True)
 
 
 def main():
@@ -47,33 +60,28 @@ def main():
     parser.add_argument('--dry-run', action='store_true')
     args = parser.parse_args()
 
+    yaml = ruamel.yaml.YAML()
     with open(MANIFEST, 'r') as f:
-        manifest = json.load(f, object_pairs_hook=collections.OrderedDict)
+        manifest = yaml.load(f)
 
-    asteroids_source = manifest['modules'][-1]['sources'][0]
+    if not os.path.exists(CLONE):
+        run(('git', 'clone', 'https://github.com/mlm-games/asteroids-revenge.git', CLONE))
 
-    if not os.path.isdir(ASTEROIDS_CLONE):
-        run(('git', 'clone', asteroids_source['url'], ASTEROIDS_CLONE))
-
-    os.chdir(ASTEROIDS_CLONE)
+    os.chdir(CLONE)
     run(('git', 'pull'))
-    sha = run_and_read(('git', 'rev-parse', 'HEAD'))
-    tag = run_and_read(('git', 'describe', '--tags', 'HEAD'))
+    sorted_tags = run_and_read(('git', 'tag', '-l', '--sort=-creatordate'))
+    tag = sorted_tags.split('\n')[0]
+    sha = run_and_read(('git', 'show-ref', '--hash', tag))
     date = run_and_read(('git', 'log', '-1', '--date=short',
-                         '--pretty=format:%cd'))
+                         '--pretty=format:%cd', tag))
     os.chdir(HERE)
 
-    # Patch manifest
-    old_tag = asteroids_source.get('tag', '')
-    asteroids_source['tag'] = tag
-    asteroids_source['commit'] = sha
-    manifest['modules'][-1]['sources'][0] = asteroids_source
+    old_tag = update_manifest(manifest, tag, sha)
 
     with open(MANIFEST, 'w') as f:
-        json.dump(fp=f, obj=manifest, indent=2)
+        yaml.dump(manifest, f)
 
-    # Patch appdata using an XML parser
-    update_appdata(tag, date)
+    update_appdata(APPDATA, tag, date)
 
     try:
         run(('git', 'diff-index', '--quiet', 'HEAD', '--'))
@@ -84,13 +92,20 @@ def main():
         return
 
     branch = 'update-to-{}'.format(tag)
-    title = f"Update to {tag}"
-    body = f"Upstream changes: {asteroids_source['url']}/compare/{old_tag}...{tag}"
     f = dry_run if args.dry_run else run
     f(('git', 'checkout', '-b', branch))
-    f(('git', 'commit', '-am', title + "\n\n" + body))
-    f(("git", "push", "-u", args.remote, branch))
-    f(("gh", "pr", "create", "--title", title, "--body", body))
+    f(('git', 'commit', '-am', 'Update to {}'.format(tag)))
+    f(('git', 'push', '-u', args.remote, branch))
+    f(('hub', 'pull-request', '--no-edit', '-m', textwrap.dedent('''
+       Update to {tag}
+
+       Upstream changes: https://github.com/mlm-games/asteroids-revenge/compare/{old_tag}...{tag}
+
+       <i>(This pull request was automatically generated.)</i>
+       ''').strip().format(
+        tag=tag,
+        old_tag=old_tag
+    )))
 
 
 if __name__ == '__main__':
