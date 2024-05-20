@@ -29,11 +29,6 @@ modules:
     dest-filename: asteroids_revenge
     only-arches:
     - x86_64
-    x-checker-data: 
-      type: json
-      url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
-      tag-query: .tag_name
-      version-query: $tag
   - type: file
     url: https://github.com/mlm-games/asteroids-revenge/releases/download/$tag/asteroids-revenge-linux-aarch64.arm64
     only-arches:
