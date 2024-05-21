@@ -22,7 +22,7 @@ modules:
   - install -Dm755 asteroids_revenge /app/bin/asteroids_revenge
   - install -D io.github.mlm_games.asteroids_revenge.desktop /app/share/applications/io.github.mlm_games.asteroids_revenge.desktop
   - install -D io.github.mlm_games.asteroids_revenge.metainfo.xml /app/share/metainfo/io.github.mlm_games.asteroids_revenge.metainfo.xml
-  - install -D icon.png /app/share/icons/hicolor/128x128/apps/io.github.mlm_games.asteroids_revenge.png
+  - install -D icon.svg /app/share/icons/hicolor/128x128/apps/io.github.mlm_games.asteroids_revenge.svg
   sources:
   - type: file
     url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.10.6/asteroids-revenge-linux.x86_64
@@ -43,6 +43,4 @@ modules:
   - type: file
     path: io.github.mlm_games.asteroids_revenge.metainfo.xml
   - type: file
-    url: https://raw.githubusercontent.com/mlm-games/asteroids-revenge/25efb339edc1a7aeaa0dae42570d376beb3cbe24/flathub_stuff/icon.png
-    sha256: a0b350843cc43d32443ca54b80f9b516ec5920b3a5bad7c5d5fffebe06197799
-    dest-filename: icon.png
+    path: icon.svg
