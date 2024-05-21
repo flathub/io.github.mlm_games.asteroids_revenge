@@ -1,20 +1,3 @@
-app-id: io.github.mlm_games.asteroids_revenge
-runtime: org.freedesktop.Platform
-runtime-version: '23.08'
-sdk: org.freedesktop.Sdk
-command: asteroids_revenge
-finish-args:
-- --share=ipc
-- --socket=x11
-- --socket=pulseaudio
-- --device=dri
-
-x-checker-data:
-  type: json
-  url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
-  tag-query: .tag_name
-  version-query: $tag
-
 modules:
 - name: AsteroidsRevenge
   buildsystem: simple
@@ -30,14 +13,18 @@ modules:
     dest-filename: asteroids_revenge
     only-arches:
     - x86_64
-    x-checker-data: {}
+    x-checker-data:
+      type: git
+      tag-pattern: "^v?(\\d+\\.\\d+\\.\\d+)$"
   - type: file
     url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.10.6/asteroids-revenge-linux-aarch64.arm64
     sha256: b8364789817f7048461c396fdc12711a93342549c8c3e5de74448762f22d33a3
     dest-filename: asteroids_revenge
     only-arches:
     - aarch64
-    x-checker-data: {}
+    x-checker-data:
+      type: git
+      tag-pattern: "^v?(\\d+\\.\\d+\\.\\d+)$"
   - type: file
     path: io.github.mlm_games.asteroids_revenge.desktop
   - type: file
