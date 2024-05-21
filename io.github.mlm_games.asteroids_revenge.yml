@@ -20,10 +20,8 @@ modules:
     only-arches:
     - x86_64
     x-checker-data:
-      type: git
-      url: https://github.com/mlm-games/asteroids-revenge.git
-      tag-pattern: "^v?(\\d+\\.\\d+\\.\\d+)$"
-      url-template: https://github.com/mlm-games/asteroids-revenge/releases/download/$version/asteroids-revenge-linux.x86_64
+      type: github-releases
+      url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
       filename: asteroids-revenge-linux.x86_64
   - type: file
     url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.10.6/asteroids-revenge-linux-aarch64.arm64
@@ -32,10 +30,8 @@ modules:
     only-arches:
     - aarch64
     x-checker-data:
-      type: git
-      url: https://github.com/mlm-games/asteroids-revenge.git
-      tag-pattern: "^v?(\\d+\\.\\d+\\.\\d+)$"
-      url-template: https://github.com/mlm-games/asteroids-revenge/releases/download/$version/asteroids-revenge-linux-aarch64.arm64
+      type: github-releases
+      url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
       filename: asteroids-revenge-linux-aarch64.arm64
   - type: file
     path: io.github.mlm_games.asteroids_revenge.desktop
