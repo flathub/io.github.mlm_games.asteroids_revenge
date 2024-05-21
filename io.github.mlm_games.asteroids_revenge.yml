@@ -23,6 +23,7 @@ modules:
       type: git
       url: https://github.com/mlm-games/asteroids-revenge.git
       tag-pattern: "^v?(\\d+\\.\\d+\\.\\d+)$"
+      url-template: https://github.com/mlm-games/asteroids-revenge/releases/download/$version/asteroids-revenge-linux.x86_64
   - type: file
     url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.10.6/asteroids-revenge-linux-aarch64.arm64
     sha256: b8364789817f7048461c396fdc12711a93342549c8c3e5de74448762f22d33a3
@@ -33,6 +34,7 @@ modules:
       type: git
       url: https://github.com/mlm-games/asteroids-revenge.git
       tag-pattern: "^v?(\\d+\\.\\d+\\.\\d+)$"
+      url-template: https://github.com/mlm-games/asteroids-revenge/releases/download/$version/asteroids-revenge-linux-aarch64.arm64
   - type: file
     path: io.github.mlm_games.asteroids_revenge.desktop
   - type: file
