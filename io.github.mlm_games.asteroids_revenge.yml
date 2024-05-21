@@ -13,7 +13,21 @@ x-checker-data:
   type: json
   url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
   tag-query: .tag_name
-  version-query: $tag
+  version-query: .tag_name
+  timestamp-query: .published_at
+  url-query: '[].assets | map(select(.name | test("asteroids-revenge-linux(.*)")) | .browser_download_url) | join(" ")'
+  code-query: |
+    map(
+      select(. | test("asteroids-revenge-linux(.*)"))
+      | capture("asteroids-revenge-linux(?<arch>[^.]+)\\.(?<ext>.*)")
+    )
+    | map(
+      {
+        arch: .arch,
+        ext: .ext,
+        url: .
+      }
+    )
 
 modules:
 - name: AsteroidsRevenge
