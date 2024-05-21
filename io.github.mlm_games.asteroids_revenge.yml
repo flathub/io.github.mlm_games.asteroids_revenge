@@ -1,3 +1,9 @@
+app-id: io.github.mlm_games.asteroids_revenge
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+command: asteroids_revenge
+
 modules:
 - name: AsteroidsRevenge
   buildsystem: simple
