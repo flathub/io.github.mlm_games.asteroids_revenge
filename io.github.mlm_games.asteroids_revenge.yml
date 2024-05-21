@@ -21,6 +21,7 @@ modules:
     - x86_64
     x-checker-data:
       type: git
+      url: https://github.com/mlm-games/asteroids-revenge.git
       tag-pattern: "^v?(\\d+\\.\\d+\\.\\d+)$"
   - type: file
     url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.10.6/asteroids-revenge-linux-aarch64.arm64
@@ -30,6 +31,7 @@ modules:
     - aarch64
     x-checker-data:
       type: git
+      url: https://github.com/mlm-games/asteroids-revenge.git
       tag-pattern: "^v?(\\d+\\.\\d+\\.\\d+)$"
   - type: file
     path: io.github.mlm_games.asteroids_revenge.desktop
