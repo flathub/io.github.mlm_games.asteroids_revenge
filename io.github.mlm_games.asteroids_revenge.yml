@@ -9,25 +9,6 @@ finish-args:
 - --socket=pulseaudio
 - --device=dri
 
-x-checker-data:
-  type: json
-  url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
-  tag-query: .tag_name
-  version-query: .tag_name
-  timestamp-query: .published_at
-  url-query: '[].assets | map(select(.name | test("asteroids-revenge-linux(.*)")) | .browser_download_url) | join(" ")'
-  code-query: |
-    map(
-      select(. | test("asteroids-revenge-linux(.*)"))
-      | capture("asteroids-revenge-linux(?<arch>[^.]+)\\.(?<ext>.*)")
-    )
-    | map(
-      {
-        arch: .arch,
-        ext: .ext,
-        url: .
-      }
-    )
 
 modules:
 - name: AsteroidsRevenge
@@ -44,14 +25,24 @@ modules:
     dest-filename: asteroids_revenge
     only-arches:
     - x86_64
-    x-checker-data: {}
+    x-checker-data:
+      type: json
+      url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
+      version-query: .tag_name
+      timestamp-query: .published_at
+      url-query: '"https://github.com/mlm-games/asteroids-revenge/releases/download/" + $version + "/asteroids-revenge-linux.x86_64"'
   - type: file
     url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.10.6/asteroids-revenge-linux-aarch64.arm64
     sha256: b8364789817f7048461c396fdc12711a93342549c8c3e5de74448762f22d33a3
     dest-filename: asteroids_revenge
     only-arches:
     - aarch64
-    x-checker-data: {}
+    x-checker-data:
+      type: json
+      url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
+      version-query: .tag_name
+      timestamp-query: .published_at
+      url-query: '"https://github.com/mlm-games/asteroids-revenge/releases/download/" + $version + "/asteroids-revenge-linux-aarch64.arm64"'
   - type: file
     path: io.github.mlm_games.asteroids_revenge.desktop
   - type: file
