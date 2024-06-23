@@ -18,7 +18,6 @@ modules:
   - install -D io.github.mlm_games.asteroids_revenge.desktop /app/share/applications/io.github.mlm_games.asteroids_revenge.desktop
   - install -D io.github.mlm_games.asteroids_revenge.metainfo.xml /app/share/metainfo/io.github.mlm_games.asteroids_revenge.metainfo.xml
   - install -D icon.svg /app/share/icons/hicolor/scalable/apps/io.github.mlm_games.asteroids_revenge.svg
-  - install -D icon.png /app/share/icons/hicolor/128x128/apps/io.github.mlm_games.asteroids_revenge.png
   sources:
   - type: file
     url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.10.9/asteroids-revenge-linux.x86_64
