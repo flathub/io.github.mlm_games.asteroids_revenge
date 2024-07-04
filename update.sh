@@ -32,8 +32,13 @@ if echo "$output" | grep -q "OUTDATED: asteroids_revenge"; then
     # Update the release tag in io.github.mlm_games.asteroids_revenge.metainfo.xml
     sed -i "/<releases>/a \    <release version=\"$new_version\" date=\"$current_date\">\\n      <description>\\n        <p>Above version's release of Asteroid's Revenge on Flathub.</p>\\n      </description>\\n    </release>" io.github.mlm_games.asteroids_revenge.metainfo.xml
 
-
-    echo "io.github.mlm_games.asteroids_revenge.yml updated with new version $new_version and SHA256 checksums."
+    git checkout -b $new_version
+    git add .
+    git commit "New update.sh branch for $new_version"
+    git push -u origin $new_version
+    gh pr create --base master --head $new_version
+    
+    echo "io.github.mlm_games.asteroids_revenge.yml updated with new version $new_version and SHA256 checksums, merge branch to integrate changes."
 
 else
     echo "No new update available."
