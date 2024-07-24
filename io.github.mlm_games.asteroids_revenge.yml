@@ -20,8 +20,8 @@ modules:
   - install -D icon.svg /app/share/icons/hicolor/scalable/apps/io.github.mlm_games.asteroids_revenge.svg
   sources:
   - type: file
-    url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.10.9/asteroids-revenge-linux.x86_64
-    sha256: 70d14d53c7262ed39d68e4fec4a45b6b6607769393c4cfffcbbc79c5874db76e
+    url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.10.10/asteroids-revenge-linux.x86_64
+    sha256: 285095367060dd06b073cdbaa9d9b111d37542683d795d08ee771bc79a0edae1
     dest-filename: asteroids_revenge
     only-arches:
     - x86_64
@@ -32,8 +32,8 @@ modules:
       timestamp-query: .published_at
       url-query: '"https://github.com/mlm-games/asteroids-revenge/releases/download/" + $version + "/asteroids-revenge-linux.x86_64"'
   - type: file
-    url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.10.9/asteroids-revenge-linux-aarch64.arm64
-    sha256: 772c0b93b5858c1e63e484c27b2e60db6be270d2c814f77a9eb703a901d6d8c8
+    url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.10.10/asteroids-revenge-linux-aarch64.arm64
+    sha256: ff0f0537d1ec8d2659106fccc9197eeb3d52bfbda0a24638aa3671470b0f27e2
     dest-filename: asteroids_revenge
     only-arches:
     - aarch64
