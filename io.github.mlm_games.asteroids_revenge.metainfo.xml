@@ -44,6 +44,18 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.11.0" date="2024-08-21">
+      <description>
+        <p>Above version's release of Asteroid's Revenge on Flathub.
+Changelog: https://raw.githubusercontent.com/mlm-games/asteroids-revenge/main/CHANGELOG.md</p>
+      </description>
+    </release>
+    <release version="0.10.11" date="2024-08-21">
+      <description>
+        <p>Above version's release of Asteroid's Revenge on Flathub.
+Changelog: https://raw.githubusercontent.com/mlm-games/asteroids-revenge/main/CHANGELOG.md</p>
+      </description>
+    </release>
     <release version="0.10.10" date="2024-07-24">
       <description>
         <p>Above version's release of Asteroid's Revenge on Flathub.
