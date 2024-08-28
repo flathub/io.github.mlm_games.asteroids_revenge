@@ -30,7 +30,8 @@ if echo "$output" | grep -q "OUTDATED: asteroids_revenge"; then
     current_date=$(date +%Y-%m-%d)
 
     # Update the release tag in io.github.mlm_games.asteroids_revenge.metainfo.xml
-    sed -i "/<releases>/a \    <release version=\"$new_version\" date=\"$current_date\">\\n      <description>\\n        <p>Above version's release of Asteroid's Revenge on Flathub.\nChangelog: https://raw.githubusercontent.com/mlm-games/asteroids-revenge/main/CHANGELOG.md</p>\\n      </description>\\n    </release>" io.github.mlm_games.asteroids_revenge.metainfo.xml
+    sed -i "/<releases>/a \    <release version=\"$new_version\" date=\"$current_date\">\\n      <description>\\n        <p>Above version's release of Asteroid's Revenge on Flathub. 
+    Changelog: https://raw.githubusercontent.com/mlm-games/asteroids-revenge/main/CHANGELOG.md</p>\\n      </description>\\n    </release>" io.github.mlm_games.asteroids_revenge.metainfo.xml
 
     git checkout -b $new_version
     git add .
