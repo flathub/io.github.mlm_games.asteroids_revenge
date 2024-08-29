@@ -35,7 +35,7 @@ if echo "$output" | grep -q "OUTDATED: asteroids_revenge"; then
 
     git checkout -b $new_version
     git add .
-    git commit -m 'New branch for $new_version'
+    git commit -m "New branch for $new_version"
     git push -u origin $new_version
     git push
     gh pr create --base master --head $new_version --title "New update: v$new_version" --body "New update to v$new_version"
