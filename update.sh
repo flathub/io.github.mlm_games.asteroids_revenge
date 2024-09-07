@@ -33,7 +33,7 @@ if echo "$output" | grep -q "OUTDATED: asteroids_revenge"; then
     sed -i "/<releases>/a \    <release version=\"$new_version\" date=\"$current_date\">\\n      <description>\\n        <p>Above version's release of Asteroid's Revenge on Flathub. 
     Changelog: https://raw.githubusercontent.com/mlm-games/asteroids-revenge/main/CHANGELOG.md</p>\\n      </description>\\n    </release>" io.github.mlm_games.asteroids_revenge.metainfo.xml
 
-    git checkout -b $new_version
+    git checkout -B $new_version
     git add .
     git commit -m "New branch for $new_version"
     git push -u origin $new_version
