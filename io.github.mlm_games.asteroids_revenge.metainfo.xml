@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>io.github.mlm_games.asteroids_revenge</id>
   <metadata_license>CC0-1.0</metadata_license>
@@ -44,6 +44,9 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.11.3" date="2024-09-14">
+      <description></description>
+    </release>
     <release version="0.11.0" date="2024-08-21">
       <description>
         <p>Above version's release of Asteroid's Revenge on Flathub.
