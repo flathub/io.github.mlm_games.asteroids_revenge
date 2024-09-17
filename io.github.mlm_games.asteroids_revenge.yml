@@ -4,48 +4,50 @@ runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 command: asteroids_revenge
 finish-args:
-- --share=ipc
-- --socket=x11
-- --socket=pulseaudio
-- --device=dri
+  - --share=ipc
+  - --socket=x11
+  - --socket=pulseaudio
+  - --device=dri
 
 
 modules:
-- name: AsteroidsRevenge
-  buildsystem: simple
-  build-commands:
-  - install -Dm755 asteroids_revenge /app/bin/asteroids_revenge
-  - install -D io.github.mlm_games.asteroids_revenge.desktop /app/share/applications/io.github.mlm_games.asteroids_revenge.desktop
-  - install -D io.github.mlm_games.asteroids_revenge.metainfo.xml /app/share/metainfo/io.github.mlm_games.asteroids_revenge.metainfo.xml
-  - install -D icon.svg /app/share/icons/hicolor/scalable/apps/io.github.mlm_games.asteroids_revenge.svg
-  sources:
-  - type: file
-    url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.11.2/asteroids-revenge-linux.x86_64
-    sha256: 2da02782b145b47c6297cd470b9c29e62b1759200d8d829cc39f23da904b692c
-    dest-filename: asteroids_revenge
-    only-arches:
-    - x86_64
-    x-checker-data:
-      type: json
-      url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
-      version-query: .tag_name
-      timestamp-query: .published_at
-      url-query: '"https://github.com/mlm-games/asteroids-revenge/releases/download/" + $version + "/asteroids-revenge-linux.x86_64"'
-  - type: file
-    url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.11.2/asteroids-revenge-linux-aarch64.arm64
-    sha256: 704692c96e2c4a0396b0c7675dc6621e98b4db5889a9d8842808bbb75aac2742
-    dest-filename: asteroids_revenge
-    only-arches:
-    - aarch64
-    x-checker-data:
-      type: json
-      url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
-      version-query: .tag_name
-      timestamp-query: .published_at
-      url-query: '"https://github.com/mlm-games/asteroids-revenge/releases/download/" + $version + "/asteroids-revenge-linux-aarch64.arm64"'
-  - type: file
-    path: io.github.mlm_games.asteroids_revenge.desktop
-  - type: file
-    path: io.github.mlm_games.asteroids_revenge.metainfo.xml
-  - type: file
-    path: icon.svg
+  - name: AsteroidsRevenge
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 asteroids_revenge /app/bin/asteroids_revenge
+      - install -D io.github.mlm_games.asteroids_revenge.desktop /app/share/applications/io.github.mlm_games.asteroids_revenge.desktop
+      - install -D io.github.mlm_games.asteroids_revenge.metainfo.xml /app/share/metainfo/io.github.mlm_games.asteroids_revenge.metainfo.xml
+      - install -D icon.svg /app/share/icons/hicolor/scalable/apps/io.github.mlm_games.asteroids_revenge.svg
+    sources:
+      - type: file
+        url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.11.3/asteroids-revenge-linux.x86_64
+        sha256: 5b0bf86ab858074f53e4927989e038ce51069b14cc1b07af45d4d80d14a061d2
+        dest-filename: asteroids_revenge
+        only-arches:
+          - x86_64
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
+          version-query: .tag_name
+          timestamp-query: .published_at
+          url-query: '"https://github.com/mlm-games/asteroids-revenge/releases/download/"
+            + $version + "/asteroids-revenge-linux.x86_64"'
+      - type: file
+        url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.11.3/asteroids-revenge-linux-aarch64.arm64
+        sha256: 78a50641fb19f1d5d8d400c308a0b60c1a0bb630fe81a3dcdc626b861278fd0c
+        dest-filename: asteroids_revenge
+        only-arches:
+          - aarch64
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/mlm-games/asteroids-revenge/releases/latest
+          version-query: .tag_name
+          timestamp-query: .published_at
+          url-query: '"https://github.com/mlm-games/asteroids-revenge/releases/download/"
+            + $version + "/asteroids-revenge-linux-aarch64.arm64"'
+      - type: file
+        path: io.github.mlm_games.asteroids_revenge.desktop
+      - type: file
+        path: io.github.mlm_games.asteroids_revenge.metainfo.xml
+      - type: file
+        path: icon.svg
