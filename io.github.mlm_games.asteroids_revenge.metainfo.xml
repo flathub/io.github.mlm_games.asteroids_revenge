@@ -44,6 +44,9 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.12.2" date="2025-02-19">
+      <description></description>
+    </release>
     <release version="0.12.1" date="2024-11-16">
       <url type="details">https://github.com/mlm-games/asteroids-revenge/releases</url>
     </release>
