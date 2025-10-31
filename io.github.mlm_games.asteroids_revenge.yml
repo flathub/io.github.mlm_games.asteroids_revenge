@@ -38,6 +38,13 @@ modules:
           type: git
           tag-pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
 
+      - type: file
+        path: icon.svg
+      - type: file
+        path: io.github.mlm_games.asteroids_revenge.desktop
+      - type: file
+        path: io.github.mlm_games.asteroids_revenge.metainfo.xml
+
     build-commands:
       - install -Dm644 web/index.pck /app/bin/godot-runner.pck
       - install -Dm644 icon.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
