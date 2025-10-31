@@ -40,6 +40,6 @@ modules:
 
     build-commands:
       - install -Dm644 web/index.pck /app/bin/godot-runner.pck
-      - install -Dm644 icon.svg /app/share/icons/hicolor/scalable/apps/io.github.mlm_games.asteroids_revenge.svg
-      - install -Dm644 flathub/io.github.mlm_games.asteroids_revenge.desktop /app/share/applications/io.github.mlm_games.asteroids_revenge.desktop
-      - install -Dm644 flathub/io.github.mlm_games.asteroids_revenge.metainfo.xml /app/share/metainfo/io.github.mlm_games.asteroids_revenge.metainfo.xml
+      - install -Dm644 icon.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - install -Dm644 ${FLATPAK_ID}.desktop /app/share/applications/${FLATPAK_ID}.desktop
+      - install -Dm644 ${FLATPAK_ID}.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
