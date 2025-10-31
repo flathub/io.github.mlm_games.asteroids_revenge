@@ -17,8 +17,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.15.2/web.zip
-        sha256: 79a00d13dee8cca0fa5eaac12568dd835fc645943586cc85775073ab4d8005b5
+        url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.15.3/web.zip
+        sha256: e96fd7b476554fc15baa0e44bbf09764eee66aa411154b69757b678b889a8629
         dest: web
         x-checker-data:
           type: json
@@ -32,8 +32,8 @@ modules:
 
       - type: git
         url: https://github.com/mlm-games/asteroids-revenge.git
-        tag: 0.15.2
-        commit: 2f1a41d624e83c535626c287d2e2e44566745ac5
+        tag: 0.15.3
+        commit: ce5e91317478d9219cbe4a2aacf2ba46d2d26e9b
         x-checker-data:
           type: git
           tag-pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
