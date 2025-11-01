@@ -2,7 +2,7 @@
 Name=Asteroids Revenge
 GenericName=AsteroidsRevenge
 Comment=Dodge lasers and battle a crooked spaceship!
-Exec=asteroids_revenge
+Exec=godot-runner
 Terminal=false
 Icon=io.github.mlm_games.asteroids_revenge
 Type=Application
