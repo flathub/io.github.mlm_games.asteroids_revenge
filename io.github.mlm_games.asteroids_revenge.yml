@@ -4,7 +4,7 @@ runtime-version: "25.08"
 sdk: org.freedesktop.Sdk
 base: org.godotengine.godot.BaseApp
 base-version: "4.5"
-command: godot-runner
+command: asteroids-revenge
 finish-args:
   - --share=ipc
   - --socket=wayland
@@ -13,12 +13,12 @@ finish-args:
   - --socket=pulseaudio
 
 modules:
-  - name: asteroids_revenge
+  - name: asteroids-revenge
     buildsystem: simple
     sources:
       - type: archive
-        url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.15.3/web.zip
-        sha256: e96fd7b476554fc15baa0e44bbf09764eee66aa411154b69757b678b889a8629
+        url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.15.4/web.zip
+        sha256: d59d5837529eb2308abd7be3f2aad9ea170f04c4415d56ad52278d653327bb82
         dest: web
         x-checker-data:
           type: json
@@ -32,21 +32,17 @@ modules:
 
       - type: git
         url: https://github.com/mlm-games/asteroids-revenge.git
-        tag: 0.15.3
-        commit: ce5e91317478d9219cbe4a2aacf2ba46d2d26e9b
+        tag: 0.15.4
+        commit: 60a4c2f201971eab61ba819126f19300eaeb2c19
         x-checker-data:
           type: git
           tag-pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
 
-      - type: file
-        path: icon.svg
-      - type: file
-        path: io.github.mlm_games.asteroids_revenge.desktop
-      - type: file
-        path: io.github.mlm_games.asteroids_revenge.metainfo.xml
-
     build-commands:
       - install -Dm644 web/index.pck /app/bin/godot-runner.pck
+
+      - ln -s godot-runner ${FLATPAK_DEST}/bin/asteroids-revenge
+      
       - install -Dm644 icon.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
-      - install -Dm644 ${FLATPAK_ID}.desktop /app/share/applications/${FLATPAK_ID}.desktop
-      - install -Dm644 ${FLATPAK_ID}.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
+      - install -Dm644 others/flathub/${FLATPAK_ID}.desktop /app/share/applications/${FLATPAK_ID}.desktop
+      - install -Dm644 others/flathub/${FLATPAK_ID}.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
